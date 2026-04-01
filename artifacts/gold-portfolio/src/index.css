@@ -67,89 +67,104 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* LIGHT CREAM THEME */
 :root {
-  --background: 40 20% 4%;
-  --foreground: 45 15% 92%;
-  --card: 40 18% 7%;
-  --card-foreground: 45 15% 92%;
-  --card-border: 40 15% 12%;
-  
-  --popover: 40 18% 7%;
-  --popover-foreground: 45 15% 92%;
-  --popover-border: 40 15% 12%;
+  --button-outline: rgba(0,0,0,.10);
+  --badge-outline: rgba(0,0,0,.05);
+  --opaque-button-border-intensity: -8;
+  --elevate-1: rgba(0,0,0,.03);
+  --elevate-2: rgba(0,0,0,.07);
 
+  /* Cream / ivory background */
+  --background: 40 30% 97%;
+  /* Near-black warm text */
+  --foreground: 30 20% 10%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 30 20% 10%;
+  --card-border: 40 15% 88%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 30 20% 10%;
+  --popover-border: 40 15% 88%;
+
+  /* Gold primary */
   --primary: 43 52% 55%;
   --primary-foreground: 40 20% 5%;
-  
-  --secondary: 40 15% 12%;
-  --secondary-foreground: 45 15% 92%;
-  
-  --muted: 40 10% 15%;
-  --muted-foreground: 40 10% 60%;
-  
+
+  --secondary: 40 20% 93%;
+  --secondary-foreground: 30 20% 10%;
+
+  --muted: 40 20% 93%;
+  --muted-foreground: 30 10% 48%;
+
   --accent: 43 52% 55%;
   --accent-foreground: 40 20% 5%;
-  
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 45 15% 92%;
-  
-  --border: 40 15% 12%;
-  --input: 40 15% 12%;
+
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 40 15% 88%;
+  --input: 40 15% 88%;
   --ring: 43 52% 55%;
-  
-  --sidebar: 40 20% 4%;
-  --sidebar-foreground: 45 15% 92%;
-  --sidebar-border: 40 15% 12%;
+
+  --sidebar: 40 30% 97%;
+  --sidebar-foreground: 30 20% 10%;
+  --sidebar-border: 40 15% 88%;
   --sidebar-primary: 43 52% 55%;
   --sidebar-primary-foreground: 40 20% 5%;
-  --sidebar-accent: 40 15% 12%;
-  --sidebar-accent-foreground: 45 15% 92%;
+  --sidebar-accent: 40 20% 93%;
+  --sidebar-accent-foreground: 30 20% 10%;
   --sidebar-ring: 43 52% 55%;
 
   --chart-1: 43 52% 55%;
-  --chart-2: 40 10% 60%;
-  --chart-3: 40 15% 12%;
-  --chart-4: 40 18% 7%;
-  --chart-5: 45 15% 92%;
+  --chart-2: 40 10% 55%;
+  --chart-3: 40 15% 70%;
+  --chart-4: 30 20% 40%;
+  --chart-5: 43 42% 38%;
 
   --app-font-sans: 'Inter', sans-serif;
   --app-font-serif: 'Playfair Display', Georgia, serif;
   --app-font-mono: Menlo, monospace;
-  --radius: 0rem; 
+  --radius: 0rem;
 
   --gold: #C9A84C;
+  --gold-light: #E2C26A;
+  --gold-dark: #9A7520;
+
+  /* Computed borders */
+  --primary-border: hsl(from hsl(var(--primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --secondary-border: hsl(from hsl(var(--secondary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --muted-border: hsl(from hsl(var(--muted)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --accent-border: hsl(from hsl(var(--accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --sidebar-primary-border: hsl(from hsl(var(--sidebar-primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --sidebar-accent-border: hsl(from hsl(var(--sidebar-accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 }
 
+/* Keep dark the same for any dark-class overrides */
 .dark {
   --background: 40 20% 4%;
   --foreground: 45 15% 92%;
   --card: 40 18% 7%;
   --card-foreground: 45 15% 92%;
   --card-border: 40 15% 12%;
-  
   --popover: 40 18% 7%;
   --popover-foreground: 45 15% 92%;
   --popover-border: 40 15% 12%;
-
   --primary: 43 52% 55%;
   --primary-foreground: 40 20% 5%;
-  
   --secondary: 40 15% 12%;
   --secondary-foreground: 45 15% 92%;
-  
   --muted: 40 10% 15%;
   --muted-foreground: 40 10% 60%;
-  
   --accent: 43 52% 55%;
   --accent-foreground: 40 20% 5%;
-  
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 45 15% 92%;
-  
   --border: 40 15% 12%;
   --input: 40 15% 12%;
   --ring: 43 52% 55%;
-  
   --sidebar: 40 20% 4%;
   --sidebar-foreground: 45 15% 92%;
   --sidebar-border: 40 15% 12%;
@@ -158,7 +173,6 @@
   --sidebar-accent: 40 15% 12%;
   --sidebar-accent-foreground: 45 15% 92%;
   --sidebar-ring: 43 52% 55%;
-
   --chart-1: 43 52% 55%;
   --chart-2: 40 10% 60%;
   --chart-3: 40 15% 12%;
@@ -184,14 +198,22 @@
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.25), transparent);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
 }
 
 .gold-text-gradient {
-  background: linear-gradient(to right, #B48A3A, #E5C974, #B48A3A);
+  background: linear-gradient(to right, #9A7520, #C9A84C, #E2C26A, #C9A84C, #9A7520);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Thin gold divider line helper */
+.gold-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  display: inline-block;
 }

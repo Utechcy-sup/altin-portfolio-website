@@ -28,7 +28,7 @@ export const PRODUCTS: Product[] = [
     weight: "35.5g",
     price: 125000,
     description: "Geleneksel Osmanlı motiflerinden ilham alınarak ustalarımız tarafından el işçiliği ile üretilmiş özel seri kelepçe.",
-    images: ["https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"],
+    images: ["https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80"],
     badge: "Yeni Koleksiyon",
     featured: true
   },
@@ -40,7 +40,7 @@ export const PRODUCTS: Product[] = [
     weight: "12.8g",
     price: 68500,
     description: "Has altının eşsiz parlaklığı ile damla kesim tasarımın buluştuğu zarif kolye.",
-    images: ["https://images.unsplash.com/photo-1599643478524-fb66f70d00ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"],
+    images: ["https://images.unsplash.com/photo-1515562529859-bd15b08e3e43?w=800&q=80"],
     featured: true
   },
   {
@@ -51,7 +51,7 @@ export const PRODUCTS: Product[] = [
     weight: "100.0g",
     price: 295000,
     description: "Uluslararası geçerliliğe sahip, sertifikalı 100 gram saf külçe altın.",
-    images: ["https://images.unsplash.com/photo-1610375461246-83df859d849d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"],
+    images: ["https://images.unsplash.com/photo-1610375461246-83df859d849d?w=800&q=80"],
     badge: "Yatırım",
     featured: true
   },
@@ -63,7 +63,8 @@ export const PRODUCTS: Product[] = [
     weight: "8.2g",
     price: 32400,
     description: "Modern ve klasik çizgileri birleştiren, ömür boyu kullanıma uygun alyans.",
-    images: ["https://images.unsplash.com/photo-1605100804763-247f6612148e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    images: ["https://images.unsplash.com/photo-1573408301185-9521ecff9ee7?w=800&q=80"],
+    featured: true
   },
   {
     id: "p5",
@@ -73,7 +74,7 @@ export const PRODUCTS: Product[] = [
     weight: "25.0g",
     price: 88000,
     description: "Klasik burma bilezik, yılların eskitemediği değer.",
-    images: ["https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    images: ["https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80"]
   },
   {
     id: "p6",
@@ -83,7 +84,7 @@ export const PRODUCTS: Product[] = [
     weight: "85.4g",
     price: 320000,
     description: "Kolye, küpe ve bileklikten oluşan göz alıcı özel tasarım set.",
-    images: ["https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"],
+    images: ["https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80&sat=-20"],
     badge: "Özel Tasarım"
   },
   {
@@ -94,7 +95,7 @@ export const PRODUCTS: Product[] = [
     weight: "50.0g",
     price: 147500,
     description: "Sertifikalı yatırım aracı 50 gram İsviçre menşeili külçe altın.",
-    images: ["https://images.unsplash.com/photo-1620288627223-53302f4e8c74?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    images: ["https://images.unsplash.com/photo-1624365168968-f283d506c6b6?w=800&q=80"]
   },
   {
     id: "p8",
@@ -104,7 +105,7 @@ export const PRODUCTS: Product[] = [
     weight: "5.5g",
     price: 24500,
     description: "İnce detaylara sahip zarif gül yaprağı motifli altın yüzük.",
-    images: ["https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    images: ["https://images.unsplash.com/photo-1573408301185-9521ecff9ee7?w=800&q=80&sat=10"]
   },
   {
     id: "p9",
@@ -114,7 +115,7 @@ export const PRODUCTS: Product[] = [
     weight: "40.0g",
     price: 140000,
     description: "Gösterişli ve kalın formda Ajda bilezik modeli.",
-    images: ["https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    images: ["https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80&bri=10"]
   },
   {
     id: "p10",
@@ -124,7 +125,7 @@ export const PRODUCTS: Product[] = [
     weight: "18.5g",
     price: 75000,
     description: "Altının sıcaklığı ile zümrüt detaylarının buluştuğu harika kolye.",
-    images: ["https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    images: ["https://images.unsplash.com/photo-1515562529859-bd15b08e3e43?w=800&q=80&sat=30"]
   },
   {
     id: "p11",
@@ -134,7 +135,7 @@ export const PRODUCTS: Product[] = [
     weight: "1000.0g",
     price: 2950000,
     description: "Büyük ölçekli yatırımcılar için LBMA onaylı 1 kilogram külçe altın.",
-    images: ["https://images.unsplash.com/photo-1587324438673-56c808f975bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"],
+    images: ["https://images.unsplash.com/photo-1624365168968-f283d506c6b6?w=800&q=80&bri=-10"],
     badge: "Özel Fiyat"
   },
   {
@@ -145,6 +146,6 @@ export const PRODUCTS: Product[] = [
     weight: "65.0g",
     price: 245000,
     description: "Osmanlı lale motiflerinden esinlenerek tasarlanan ihtişamlı gerdanlık.",
-    images: ["https://images.unsplash.com/photo-1509941943102-10c232535736?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    images: ["https://images.unsplash.com/photo-1573408301185-9521ecff9ee7?w=800&q=80&bri=10"]
   }
 ];
