@@ -65,8 +65,8 @@ export default function Home() {
                 alt="Kadınlar İçin"
                 className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
-              {/* Dark overlay */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60" />
+              {/* Subtle bottom fade for text readability only */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
 
               {/* Text */}
               <div className="absolute inset-0 flex flex-col items-center justify-end pb-16 px-8 text-center text-white">
@@ -102,7 +102,7 @@ export default function Home() {
                 alt="Erkekler İçin"
                 className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
 
               <div className="absolute inset-0 flex flex-col items-center justify-end pb-16 px-8 text-center text-white">
                 <motion.div
