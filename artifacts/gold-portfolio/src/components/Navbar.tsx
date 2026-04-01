@@ -19,7 +19,7 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const transparent = isHome && !scrolled;
+  const transparent = false;
 
   const navLinks = [
     { name: "Anasayfa", path: "/" },
