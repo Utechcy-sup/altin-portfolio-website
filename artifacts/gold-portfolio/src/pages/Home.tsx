@@ -47,7 +47,7 @@ export default function Home() {
   const featuredProducts = PRODUCTS.filter(p => p.featured).slice(0, 4);
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
+    <div className="flex flex-col min-h-screen bg-background w-full overflow-x-hidden">
 
       {/* ── HERO: Responsive Split/Stacked Banner ────────────────────────── */}
       <section className="h-screen flex flex-col md:flex-row overflow-hidden">
