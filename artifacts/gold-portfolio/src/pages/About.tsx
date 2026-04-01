@@ -31,6 +31,7 @@ function Counter({ from, to, duration = 2 }: { from: number, to: number, duratio
       animationFrame = requestAnimationFrame(animate);
       return () => cancelAnimationFrame(animationFrame);
     }
+    return undefined;
   }, [isInView, from, to, duration]);
 
   return <span ref={ref}>{count}</span>;

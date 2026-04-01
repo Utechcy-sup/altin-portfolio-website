@@ -18,25 +18,25 @@ const CATEGORIES_VISUAL = [
   {
     label: "Kadınlar İçin",
     sub: "Yüzük & Kolye",
-    image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "/assets/cat_women.png",
     href: "/collections",
   },
   {
     label: "Erkekler İçin",
     sub: "Bileklik & Zincir",
-    image: "https://images.unsplash.com/photo-1610375461246-83df859d849d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "/assets/cat_men.png",
     href: "/collections",
   },
   {
     label: "Yatırım Altını",
     sub: "Külçe & Cumhuriyet",
-    image: "https://images.unsplash.com/photo-1624365168968-f283d506c6b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "/assets/cat_investment.png",
     href: "/gold-prices",
   },
   {
     label: "Özel Tasarım",
     sub: "Sipariş & Atölye",
-    image: "https://images.unsplash.com/photo-1573408301185-9521ecff9ee7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "/assets/cat_custom_v2.png",
     href: "/contact",
   },
 ];
@@ -49,37 +49,37 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
 
-      {/* ── HERO: Split Two-Panel Banner ────────────────────────────── */}
-      <section className="h-screen flex">
+      {/* ── HERO: Responsive Split/Stacked Banner ────────────────────────── */}
+      <section className="h-screen flex flex-col md:flex-row overflow-hidden">
         {/* Left Panel — Kadınlar İçin */}
         <motion.div
-          className="relative w-1/2 overflow-hidden cursor-pointer group"
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
+          className="relative w-full h-1/2 md:w-1/2 md:h-full overflow-hidden cursor-pointer group"
+          initial={{ opacity: 0, y: -40, x: 0 }}
+          animate={{ opacity: 1, y: 0, x: 0 }}
           transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
+          viewport={{ once: true }}
+          className="relative w-full h-1/2 md:w-1/2 md:h-full overflow-hidden cursor-pointer group"
         >
           <Link href="/collections">
             <div className="w-full h-full">
               <img
-                src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85"
+                src="/assets/hero_women.png"
                 alt="Kadınlar İçin"
-                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-110"
               />
-              {/* Subtle bottom fade for text readability only */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent md:from-black/55" />
 
-              {/* Text */}
-              <div className="absolute inset-0 flex flex-col items-center justify-end pb-16 px-8 text-center text-white">
+              <div className="absolute inset-0 flex flex-col items-center justify-end pb-12 md:pb-16 px-8 text-center text-white">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.5 }}
                 >
-                  <p className="text-sm italic tracking-widest mb-3 font-light text-white/90">Kadınlar İçin</p>
-                  <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl leading-tight mb-6">
+                  <p className="text-[10px] md:text-sm italic tracking-[0.3em] mb-2 md:mb-3 font-light text-white/90">Kadınlar İçin</p>
+                  <h2 className="font-serif text-2xl md:text-4xl lg:text-5xl leading-tight mb-4 md:mb-6">
                     Zarafetin<br />Simgesi
                   </h2>
-                  <div className="inline-flex items-center gap-2 border border-white/60 text-white text-xs uppercase tracking-[0.2em] px-6 py-3 hover:bg-white hover:text-foreground transition-all duration-300">
+                  <div className="inline-flex items-center gap-2 border border-white/60 text-white text-[10px] md:text-xs uppercase tracking-[0.2em] px-5 py-2.5 md:px-6 md:py-3 hover:bg-white hover:text-foreground transition-all duration-300">
                     Koleksiyonu Keşfet
                   </div>
                 </motion.div>
@@ -90,31 +90,32 @@ export default function Home() {
 
         {/* Right Panel — Erkekler İçin */}
         <motion.div
-          className="relative w-1/2 overflow-hidden cursor-pointer group"
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
+          className="relative w-full h-1/2 md:w-1/2 md:h-full overflow-hidden cursor-pointer group"
+          initial={{ opacity: 0, y: 40, x: 0 }}
+          animate={{ opacity: 1, y: 0, x: 0 }}
           transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.1 }}
+          viewport={{ once: true }}
         >
           <Link href="/collections">
-            <div className="w-full h-full">
+            <div className="w-full h-full border-t md:border-t-0 md:border-l border-white/10">
               <img
-                src="https://images.unsplash.com/photo-1610375461246-83df859d849d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85"
+                src="/assets/hero_men.png"
                 alt="Erkekler İçin"
-                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent md:from-black/55" />
 
-              <div className="absolute inset-0 flex flex-col items-center justify-end pb-16 px-8 text-center text-white">
+              <div className="absolute inset-0 flex flex-col items-center justify-end pb-12 md:pb-16 px-8 text-center text-white">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.65 }}
                 >
-                  <p className="text-sm italic tracking-widest mb-3 font-light text-white/90">Erkekler İçin</p>
-                  <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl leading-tight mb-6">
+                  <p className="text-[10px] md:text-sm italic tracking-[0.3em] mb-2 md:mb-3 font-light text-white/90">Erkekler İçin</p>
+                  <h2 className="font-serif text-2xl md:text-4xl lg:text-5xl leading-tight mb-4 md:mb-6">
                     Gücün<br />Altını
                   </h2>
-                  <div className="inline-flex items-center gap-2 border border-white/60 text-white text-xs uppercase tracking-[0.2em] px-6 py-3 hover:bg-white hover:text-foreground transition-all duration-300">
+                  <div className="inline-flex items-center gap-2 border border-white/60 text-white text-[10px] md:text-xs uppercase tracking-[0.2em] px-5 py-2.5 md:px-6 md:py-3 hover:bg-white hover:text-foreground transition-all duration-300">
                     Koleksiyonu Keşfet
                   </div>
                 </motion.div>
@@ -212,7 +213,7 @@ export default function Home() {
       {/* ── EDITORIAL FULL-WIDTH IMAGE ──────────────────────────────── */}
       <section className="relative h-[60vh] overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1515562529859-bd15b08e3e43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&q=80"
+          src="/assets/editorial_bg.png"
           alt="Mücevher"
           className="w-full h-full object-cover object-center"
         />
@@ -268,16 +269,23 @@ export default function Home() {
           {/* Left — large */}
           <ScrollReveal direction="left">
             <Link href="/collections">
-              <div className="group relative overflow-hidden h-[420px] cursor-pointer">
+              <div className="group relative overflow-hidden h-[420px] cursor-pointer border border-border/50">
                 <img
-                  src="https://images.unsplash.com/photo-1573408301185-9521ecff9ee7?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
-                  alt="Koleksiyon"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  src="/assets/gold_bracelets.png"
+                  alt="Altın Bileklikler"
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/45 transition-all" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent group-hover:from-black/80 transition-all duration-500" />
                 <div className="absolute bottom-8 left-8 text-white">
-                  <p className="text-xs uppercase tracking-widest text-white/70 mb-1">Yeni Sezon</p>
-                  <h3 className="font-serif text-3xl">Altın Bileklikler</h3>
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                  >
+                    <p className="text-[10px] uppercase tracking-[0.3em] text-[#C9A84C] font-bold mb-2">Yeni Sezon</p>
+                    <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl tracking-tight">Altın Bileklikler</h3>
+                    <div className="mt-4 h-[1px] w-0 group-hover:w-16 bg-[#C9A84C] transition-all duration-500" />
+                  </motion.div>
                 </div>
               </div>
             </Link>
@@ -287,32 +295,32 @@ export default function Home() {
           <div className="flex flex-col gap-4">
             <ScrollReveal direction="right" delay={0.1}>
               <Link href="/gold-prices">
-                <div className="group relative overflow-hidden h-[200px] cursor-pointer">
+                <div className="group relative overflow-hidden h-[202px] cursor-pointer border border-border/50">
                   <img
-                    src="https://images.unsplash.com/photo-1624365168968-f283d506c6b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                    src="/assets/gold_bullion.png"
                     alt="Yatırım Altını"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-black/35 group-hover:bg-black/50 transition-all" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent group-hover:from-black/80 transition-all duration-500" />
                   <div className="absolute bottom-6 left-6 text-white">
-                    <p className="text-xs uppercase tracking-widest text-white/70 mb-0.5">Yatırım</p>
-                    <h3 className="font-serif text-2xl">Külçe Altın</h3>
+                    <p className="text-[10px] uppercase tracking-[0.3em] text-[#C9A84C] font-bold mb-1">Yatırım</p>
+                    <h3 className="font-serif text-2xl lg:text-3xl">Külçe Altın</h3>
                   </div>
                 </div>
               </Link>
             </ScrollReveal>
             <ScrollReveal direction="right" delay={0.2}>
               <Link href="/contact">
-                <div className="group relative overflow-hidden h-[200px] cursor-pointer">
+                <div className="group relative overflow-hidden h-[202px] cursor-pointer border border-border/50">
                   <img
-                    src="https://images.unsplash.com/photo-1585396918165-d78e7c7b9ede?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                    src="/assets/custom_order.png"
                     alt="Özel Sipariş"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-black/35 group-hover:bg-black/50 transition-all" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent group-hover:from-black/80 transition-all duration-500" />
                   <div className="absolute bottom-6 left-6 text-white">
-                    <p className="text-xs uppercase tracking-widest text-white/70 mb-0.5">Atölye</p>
-                    <h3 className="font-serif text-2xl">Özel Sipariş</h3>
+                    <p className="text-[10px] uppercase tracking-[0.3em] text-[#C9A84C] font-bold mb-1">Atölye</p>
+                    <h3 className="font-serif text-2xl lg:text-3xl">Özel Sipariş</h3>
                   </div>
                 </div>
               </Link>

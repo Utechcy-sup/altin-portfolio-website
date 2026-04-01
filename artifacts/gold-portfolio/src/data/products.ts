@@ -28,7 +28,7 @@ export const PRODUCTS: Product[] = [
     weight: "35.5g",
     price: 125000,
     description: "Geleneksel Osmanlı motiflerinden ilham alınarak ustalarımız tarafından el işçiliği ile üretilmiş özel seri kelepçe.",
-    images: ["https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80"],
+    images: ["/assets/prod_bangle.png"],
     badge: "Yeni Koleksiyon",
     featured: true
   },
@@ -40,7 +40,7 @@ export const PRODUCTS: Product[] = [
     weight: "12.8g",
     price: 68500,
     description: "Has altının eşsiz parlaklığı ile damla kesim tasarımın buluştuğu zarif kolye.",
-    images: ["https://images.unsplash.com/photo-1515562529859-bd15b08e3e43?w=800&q=80"],
+    images: ["/assets/prod_pendant.png"],
     featured: true
   },
   {
@@ -51,7 +51,7 @@ export const PRODUCTS: Product[] = [
     weight: "100.0g",
     price: 295000,
     description: "Uluslararası geçerliliğe sahip, sertifikalı 100 gram saf külçe altın.",
-    images: ["https://images.unsplash.com/photo-1610375461246-83df859d849d?w=800&q=80"],
+    images: ["/assets/gold_bullion.png"],
     badge: "Yatırım",
     featured: true
   },
@@ -63,7 +63,7 @@ export const PRODUCTS: Product[] = [
     weight: "8.2g",
     price: 32400,
     description: "Modern ve klasik çizgileri birleştiren, ömür boyu kullanıma uygun alyans.",
-    images: ["https://images.unsplash.com/photo-1573408301185-9521ecff9ee7?w=800&q=80"],
+    images: ["/assets/prod_ring.png"],
     featured: true
   },
   {

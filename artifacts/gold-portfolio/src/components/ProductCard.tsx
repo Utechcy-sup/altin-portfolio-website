@@ -13,10 +13,9 @@ export function ProductCard({ product }: ProductCardProps) {
     <Link href={`/collections/${product.id}`}>
       <motion.div
         className="group cursor-pointer bg-white border border-border flex flex-col overflow-hidden"
-        whileHover={{ y: -4 }}
+        whileHover={{ y: -4, boxShadow: "0 12px 40px rgba(0,0,0,0.12)" } as any}
         transition={{ duration: 0.3, ease: "easeOut" }}
         style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.06)" }}
-        whileHover={{ y: -4, boxShadow: "0 12px 40px rgba(0,0,0,0.12)" } as any}
       >
         {/* Image Area */}
         <div className="relative overflow-hidden aspect-[3/4] bg-[#F5F0E8]">
