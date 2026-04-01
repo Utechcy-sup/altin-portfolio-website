@@ -1,0 +1,712 @@
+# 🥇 ALTIN PORTFÖY SİTESİ — REPLİT PROMPT PAKETİ
+> Yazılım mühendisi perspektifiyle hazırlanmış, production-ready site için copy-paste promptlar.
+
+---
+
+## 📋 PROJE ÖZETİ
+
+**Site Adı:** [Müşteriye göre değiştir — örn. "Sarraf | Altın Portföy"]
+**Tema:** Lüks, zarafet, güven, temizlik
+**Renk Paleti:** Derin siyah (#0A0A0A), Altın (#C9A84C, #E2C26A, #F0D99A), Kırık beyaz (#FAFAF8), Koyu bej (#1C1A14)
+**Tipografi:** Playfair Display (başlıklar) + Inter (gövde metin)
+**Teknoloji:** React + Vite + TailwindCSS + React Router v6 + Recharts + Framer Motion
+
+---
+
+## 🏗️ PROMPT 1 — PROJE KURULUMU (Replit'e ilk girilecek)
+
+```
+Create a luxury gold portfolio website project in Replit using React + Vite + TailwindCSS.
+
+Project structure:
+src/
+  components/
+    Navbar.jsx
+    Footer.jsx
+    GoldTicker.jsx
+    ProductCard.jsx
+    HeroSection.jsx
+  pages/
+    Home.jsx
+    Collections.jsx
+    GoldPrices.jsx
+    About.jsx
+    Blog.jsx
+    Contact.jsx
+  hooks/
+    useGoldPrice.js
+  data/
+    products.js
+    blogPosts.js
+  styles/
+    globals.css
+  App.jsx
+  main.jsx
+
+Install these packages:
+- react-router-dom
+- framer-motion
+- recharts
+- @headlessui/react
+- react-icons
+
+In tailwind.config.js, extend the theme with this custom color palette:
+colors: {
+  gold: {
+    50:  '#FDFBF4',
+    100: '#F0D99A',
+    200: '#E2C26A',
+    300: '#C9A84C',
+    400: '#B8912E',
+    500: '#9A7520',
+    600: '#7A5B14',
+    700: '#5A410A',
+    800: '#3A2A04',
+    900: '#1C1502',
+  },
+  obsidian: {
+    50:  '#F2F2F0',
+    100: '#D4D3CE',
+    200: '#A8A69D',
+    300: '#7C7A6E',
+    400: '#504E42',
+    500: '#2A2820',
+    600: '#1C1A14',
+    700: '#141209',
+    800: '#0D0B06',
+    900: '#060503',
+  }
+}
+
+Also add these custom fonts in tailwind.config.js:
+fontFamily: {
+  serif: ['Playfair Display', 'Georgia', 'serif'],
+  sans: ['Inter', 'system-ui', 'sans-serif'],
+}
+
+Add Google Fonts link in index.html:
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+Set App.jsx to use React Router with these routes:
+/ → Home
+/collections → Collections
+/collections/:id → ProductDetail
+/gold-prices → GoldPrices
+/about → About
+/blog → Blog
+/blog/:slug → BlogPost
+/contact → Contact
+
+Create a basic App.jsx with Router, Navbar, and Footer wrapping all routes.
+```
+
+---
+
+## 🏠 PROMPT 2 — ANA SAYFA (Home.jsx)
+
+```
+Build a stunning luxury gold portfolio homepage (Home.jsx) with these exact sections:
+
+SECTION 1 — HERO:
+- Full-screen (100vh) hero section
+- Dark background: bg-obsidian-900
+- Centered text layout
+- Headline: "Zamanın Ötesinde Değer" in Playfair Display, 72px, text-gold-200, with a subtle fade-in animation using Framer Motion (initial opacity 0, y: 30 → opacity 1, y: 0, duration 1s)
+- Subheadline: "Her gram'da güvence. Her tasarımda zarafet." in Inter Light, 20px, text-gold-100/70
+- Two CTA buttons side by side:
+  * Primary: "Koleksiyonu Keşfet" — bg-gold-300 text-obsidian-900 hover:bg-gold-200 transition px-8 py-4 rounded-none (sharp corners for luxury feel)
+  * Secondary: "Altın Fiyatlarını Gör" — border border-gold-300 text-gold-300 hover:bg-gold-300/10 px-8 py-4 rounded-none
+- Decorative thin horizontal gold line (1px, w-24, bg-gold-300) centered above the headline
+- Decorative abstract geometric SVG pattern (very subtle, opacity-5) as background texture
+
+SECTION 2 — LIVE GOLD TICKER BAR:
+- Full-width dark bar (bg-obsidian-800) below hero
+- Shows: "22 Ayar Altın: ₺X.XXX/gr" | "18 Ayar: ₺X.XXX/gr" | "Has Altın: ₺X.XXX/gr" | "USD/ONS: $X.XXX"
+- Use the useGoldPrice hook (returns mock data for now with realistic Turkish prices)
+- Small green arrow icon (▲) with green text for positive change, red (▼) for negative
+- Auto-scrolling marquee animation
+
+SECTION 3 — FEATURED COLLECTIONS:
+- Section title: "Seçkin Koleksiyonlar" — Playfair Display italic, gold-300, centered
+- Subtitle: thin gold decorative line on both sides of title text
+- 3-column grid of ProductCard components (see ProductCard prompt below)
+- Products shown: "22 Ayar Bilezik Koleksiyonu", "Özel Tasarım Yüzükler", "Has Altın Külçe Sertifikası"
+- "Tüm Koleksiyonu Gör" link at bottom, right-aligned
+
+SECTION 4 — WHY TRUST US (3 columns):
+- Light background section: bg-gold-50
+- Three trust pillars, each with:
+  * Gold icon (SVG shield / certificate / handshake)
+  * Title in Playfair Display
+  * Description in Inter
+- Pillars: "Sertifikalı Kalite", "Şeffaf Fiyatlandırma", "30 Yıllık Deneyim"
+
+SECTION 5 — GOLD PRICE MINI CHART:
+- Dark section (obsidian-800)
+- Title: "Bu Hafta Altın Piyasası"
+- Small Recharts AreaChart showing 7-day gold price trend (use mock data)
+- Gold gradient fill (#C9A84C → transparent)
+- "Detaylı Analiz →" link to /gold-prices
+
+SECTION 6 — TESTIMONIALS:
+- 3 client testimonials, italic quotes, client name below
+- Dark cards with gold-300 left border (border-l-2)
+
+SECTION 7 — NEWSLETTER CTA:
+- Full-width gold background (bg-gold-300)
+- Dark text
+- Email input field + "Abone Ol" button
+- Text: "Altın piyasasındaki son gelişmeleri ve özel teklifleri kaçırmayın."
+
+All animations: use Framer Motion with scroll-triggered reveals (whileInView with once: true).
+```
+
+---
+
+## 💎 PROMPT 3 — ÜRÜN KARTI BİLEŞENİ (ProductCard.jsx)
+
+```
+Create a luxurious ProductCard component for a gold jewelry portfolio website:
+
+Props:
+- image (URL string)
+- title (string)
+- category (string — e.g. "22 Ayar")
+- weight (string — e.g. "8.5 gr")
+- price (number)
+- priceUnit (string — "₺/gram" or "₺")
+- badge (optional — e.g. "Yeni", "Özel Tasarım")
+- id (string)
+
+Design specs:
+- Card dimensions: fixed aspect ratio 3/4 portrait
+- Background: bg-obsidian-900
+- Image: covers top 65% of card with object-cover, slight scale-up on hover (transform scale-105, transition 600ms)
+- On hover: dark overlay appears on image (bg-obsidian-900/40)
+- Bottom info area: bg-obsidian-800, padding 20px
+- Category label: tiny uppercase tracking-widest text-gold-300 font-medium text-xs
+- Title: Playfair Display, text-gold-100, 18px, line-clamp-2
+- Weight badge: small pill, border border-gold-300/50 text-gold-300 text-xs px-2 py-0.5
+- Price display: text-gold-200 text-2xl font-semibold + text-gold-100/60 text-sm for unit
+- Hover CTA: "Detayları İncele →" button slides up from bottom with Framer Motion (y: 20 → y: 0, opacity 0 → 1)
+- Badge (if present): absolute top-right, bg-gold-300 text-obsidian-900 text-xs px-2 py-1
+
+On click: navigate to /collections/${id} using useNavigate
+Add a subtle gold shimmer animation on the price text (CSS keyframe, 3s loop)
+```
+
+---
+
+## 📊 PROMPT 4 — ALTIN FİYATLARI SAYFASI (GoldPrices.jsx) ⭐ EN ÖNEMLİ
+
+```
+Build a comprehensive gold prices page (GoldPrices.jsx) — this is the most important page.
+
+LAYOUT: Dark luxury design, obsidian background, gold accents throughout.
+
+Create a custom hook useGoldPrice.js first:
+- Fetches from: https://api.metals.live/v1/spot/gold (free, no key needed)
+- Falls back to mock data if fetch fails:
+  mockData = { 
+    xauusd: 2340.5,  // USD per troy ounce 
+    timestamp: Date.now() 
+  }
+- Calculates Turkish Lira prices using mock USD/TRY rate of 32.5
+- Calculates gram prices: (usdPerOunce * tryRate) / 31.1035 = TRY per gram
+- Returns: { 
+    hasAltinGram: number,  // 24k
+    yirmiikiAyarGram: number,  // 22k = has * 0.916
+    onsUSD: number,
+    tryRate: number,
+    lastUpdated: string,
+    loading: boolean,
+    error: boolean
+  }
+- Auto-refreshes every 5 minutes (setInterval in useEffect)
+- Shows "Son güncelleme: HH:MM" timestamp
+
+PAGE SECTIONS:
+
+1. PAGE HEADER:
+- Thin breadcrumb: Anasayfa / Altın Fiyatları
+- Page title "Canlı Altın Fiyatları" in Playfair Display 56px text-gold-200
+- Subtitle "Anlık piyasa verileriyle şeffaf fiyatlandırma"
+- Live indicator: pulsing green dot + "CANLI" text
+
+2. MAIN PRICE CARDS (2x2 grid on desktop, 1 col mobile):
+Each card is dark (obsidian-800), sharp corners, gold border-top (4px):
+
+Card 1 — Has Altın (24 Ayar):
+  Label: "Has Altın · 24 Ayar · 999.9" uppercase tracking-wide text-gold-300
+  Price: huge typography, text-gold-100, 48px, Playfair Display
+  Format: "₺X.XXX,XX / gram"
+  Change: green +1.2% ▲ or red -0.8% ▼ (mock for now)
+  Sub: USD equivalent small text below
+
+Card 2 — 22 Ayar:
+  Same structure, price = has * 0.916
+  Label: "22 Ayar · 916"
+
+Card 3 — 18 Ayar:
+  Same structure, price = has * 0.750
+  Label: "18 Ayar · 750"
+
+Card 4 — Ons (USD):
+  Label: "Has Altın · Troy Ons · USD"
+  Price in USD format: "$X,XXX.XX / ons"
+  TRY equivalent below
+
+3. HISTORICAL PRICE CHART:
+- Full-width dark card
+- Title: "Fiyat Grafiği"
+- Time range tabs: "7G" | "1A" | "3A" | "1Y" | "5Y" (active tab: bg-gold-300 text-obsidian-900)
+- Recharts AreaChart with:
+  * Gold gradient fill (from gold-300/50 to transparent)
+  * Gold-300 stroke line (1.5px)
+  * Custom tooltip: dark bg, shows date + price in TRY
+  * No grid lines (gridStroke="transparent") for cleaner look
+  * Custom X and Y axis with gold-300/50 text
+- Mock data: generate realistic-looking price data for each time range using a sine wave + trend formula
+- Smooth line (type="monotone")
+- Chart height: 300px
+
+4. GOLD CALCULATOR:
+- Section title: "Altın Hesap Makinesi"
+- Card with two inputs:
+  * "Gram miktarı" — number input with stepper (+/-)
+  * "Ayar seçin" — dropdown: 24, 22, 18, 14 Ayar
+- Real-time calculation result:
+  * Large display: "= ₺XX.XXX,XX"
+  * Shows: "İşlem kuru: ₺X.XXX/gram"
+- Secondary calculation: "USD değeri: $X,XXX.XX"
+- Add note: "* Fiyatlar anlık piyasa verilerine dayanmaktadır. Alım/satım fiyatları farklılık gösterebilir."
+
+5. MARKET INFO CARDS (3 columns):
+- "Spread Nedir?" — explanation card
+- "Ayar Farkı" — table showing karat to purity mapping
+- "Piyasa Saatleri" — Istanbul exchange hours
+
+6. PRICE HISTORY TABLE:
+- Last 7 days prices in a clean table
+- Columns: Tarih | 24 Ayar | 22 Ayar | USD/ONS | Değişim
+- Alternating row colors: obsidian-800 / obsidian-700
+- Gold header row
+
+Style everything with the luxury gold/dark theme. Add entrance animations with Framer Motion.
+```
+
+---
+
+## 🖼️ PROMPT 5 — KOLEKSİYONLAR SAYFASI (Collections.jsx)
+
+```
+Build the Collections page (Collections.jsx) for the gold portfolio site.
+
+Create mock product data in src/data/products.js with 12 products:
+Each product: { id, title, category, weight, karat, price, description, images: [url1, url2], badge?, featured? }
+
+Categories: ["22 Ayar Bilezikler", "18 Ayar Yüzükler", "Has Altın Kolye", "Külçe & Yatırım", "Özel Tasarım"]
+
+Use beautiful gold jewelry placeholder images from:
+https://images.unsplash.com/photo-[various gold jewelry IDs]?w=600&q=80
+Use these specific Unsplash photo IDs for gold jewelry:
+- 1515562529859-bd15b08e3e43 (gold ring)
+- 1602751584552-8539a1b4b4c4 (gold necklace)
+- 1611652022419-a9419f74343d (gold bracelet)
+- 1573408301185-9521ecff9ee7 (gold earrings)
+
+PAGE LAYOUT:
+
+1. PAGE HERO (shorter than homepage):
+- Height: 40vh
+- Background: obsidian-900 with subtle gold geometric pattern overlay
+- Title: "Seçkin Koleksiyonlarımız" — centered, Playfair Display
+- Breadcrumb above
+
+2. FILTER BAR (sticky on scroll):
+- Horizontal pill buttons for each category + "Tümü"
+- Active state: bg-gold-300 text-obsidian-900
+- Inactive: border border-gold-300/50 text-gold-300
+- Sort dropdown: "Fiyat: Düşük→Yüksek", "Fiyat: Yüksek→Düşük", "Ağırlık"
+- Item count: "12 ürün gösteriliyor" right-aligned
+
+3. PRODUCT GRID:
+- 3 columns desktop, 2 tablet, 1 mobile
+- Use ProductCard component for each item
+- Staggered Framer Motion entrance animation (each card delays by index * 0.1s)
+- Masonry-like feel: first card in each row slightly taller
+
+4. PRODUCT DETAIL PAGE (/collections/:id):
+- Large image gallery: main image left (60%), thumbnails below
+- Right panel: 
+  * Category + Karat badge
+  * Title in Playfair Display 36px
+  * Weight, purity specs
+  * Price with "Güncel fiyat için iletişime geçin" CTA
+  * "Teklif Al" button — opens WhatsApp with pre-filled message
+  * Detailed description
+  * Specifications table: Ayar, Ağırlık, Sertifika, Üretim
+- Below: "Benzer Ürünler" horizontal scroll section
+```
+
+---
+
+## 🧭 PROMPT 6 — NAVBAR BİLEŞENİ (Navbar.jsx)
+
+```
+Build a sophisticated sticky navbar for the luxury gold website (Navbar.jsx).
+
+BEHAVIOR:
+- Transparent on top of hero (bg-transparent)
+- On scroll down 80px: transitions to bg-obsidian-900/95 with backdrop-blur-md
+- Smooth transition: transition-all duration-300
+- Height: 72px (not scrolled) → 60px (scrolled)
+- Use useState + useEffect with window.scrollY listener
+
+LAYOUT (left to right):
+[Logo] ————————————— [Nav Links] ————————————— [Actions]
+
+LOGO (left):
+- SVG gold diamond/rhombus icon + "SARRAF" in Playfair Display tracking-widest
+- Text: text-gold-200
+- Subtle gold glow on hover
+
+NAV LINKS (center):
+- Anasayfa | Koleksiyonlar | Altın Fiyatları | Hakkımızda | Blog | İletişim
+- Font: Inter 14px, text-gold-100/80
+- Hover: text-gold-300
+- Active page: text-gold-300 with tiny gold dot below (absolute, w-1 h-1 bg-gold-300 rounded-full)
+- Use NavLink from react-router-dom for active state detection
+
+ACTIONS (right):
+- 🔍 Search icon button (opens search modal)
+- WhatsApp icon button (green, links to wa.me/...)
+- "Teklif Al" CTA button: bg-gold-300 text-obsidian-900 text-sm px-4 py-2 hover:bg-gold-200
+
+MOBILE:
+- Hamburger menu (3 lines → X animation)
+- Full-screen mobile menu slides down from top
+- Links stacked vertically, larger font
+- Same gold/dark theme
+- Close on route change
+
+GOLD TICKER (below navbar, optional):
+- Thin 32px strip below the main navbar
+- Scrolling marquee with current gold prices
+- bg-obsidian-800 border-b border-gold-300/20
+- "22K ₺X.XXX | 18K ₺X.XXX | Has ₺X.XXX | 🔴 USD $X.XXX" repeating
+```
+
+---
+
+## ✉️ PROMPT 7 — İLETİŞİM SAYFASI (Contact.jsx)
+
+```
+Build the Contact page (Contact.jsx) for the gold portfolio site.
+
+TWO-COLUMN LAYOUT (reverse on mobile):
+
+LEFT COLUMN — Contact Form:
+- Title: "Teklif Alın" Playfair Display
+- Form fields (all dark, obsidian-700 bg, gold border on focus):
+  * Ad Soyad (text)
+  * E-posta (email)  
+  * Telefon (tel) — optional
+  * İlgilendiğiniz Ürün (select: 22 Ayar Bilezik, 18 Ayar Yüzük, Külçe, Özel Tasarım, Diğer)
+  * Gram miktarı / Bütçe (text)
+  * Mesajınız (textarea, 4 rows)
+- Submit button: full-width bg-gold-300 text-obsidian-900 py-4
+- Form validation with helpful error messages
+- Success state: elegant animated checkmark + "Talebiniz alındı, en kısa sürede dönüş yapacağız."
+
+RIGHT COLUMN — Contact Info:
+- "Doğrudan İletişim" section:
+  * 📞 Telefon number with click-to-call
+  * ✉️ Email with mailto link
+  * 📱 WhatsApp button (prominent green button, "Hemen WhatsApp'tan Yazın")
+  * 🕒 Çalışma Saatleri: Pazartesi-Cumartesi 09:00-19:00
+- Google Maps embed (or static map image) showing office location
+- Small "trust badges" below: Secured · Certified · 30 Years
+
+Full dark luxury styling, Framer Motion form field focus animations.
+```
+
+---
+
+## 📰 PROMPT 8 — HAKKIMIZDA SAYFASI (About.jsx)
+
+```
+Build the About page (About.jsx) for the gold portfolio site.
+
+SECTIONS:
+
+1. CINEMATIC HERO:
+- Full-width, height 60vh
+- Dark background with a horizontal gold bar decorative element
+- "Güvene Dayalı 30 Yıl" — Playfair Display italic 64px text-gold-200
+- Thin description below
+
+2. STORY SECTION (alternating image-text rows):
+Row 1 (image left, text right):
+- Placeholder image: craftsman working with gold
+- Title: "Ustadan Gelen Kalite"
+- Text: founding story, heritage, craftsmanship
+
+Row 2 (text left, image right):
+- "Modern Anlayış, Kadim Değer"
+- Text: contemporary approach to gold investment
+
+3. STATISTICS BAR:
+Full-width obsidian-800 strip with 4 large stats:
+- "30+" Yıl Deneyim
+- "5.000+" Mutlu Müşteri  
+- "₺500M+" Toplam İşlem Hacmi
+- "100%" Sertifikalı Ürünler
+Numbers animate up with Framer Motion when in view (useMotionValue, animate from 0 to final value)
+
+4. CERTIFICATIONS & TRUST:
+- Grid of certification logos/badges
+- İstanbul Kuyumcular Odası
+- TSE Kalite Belgesi
+- LBMA Uyumlu
+- Each with logo placeholder + name + description
+
+5. TEAM (optional):
+- 3 team member cards with photo, name, title
+- Professional dark card design
+
+6. VALUES:
+- 3 core values with icons: Güven, Şeffaflık, Kalite
+```
+
+---
+
+## 🎨 PROMPT 9 — FOOTER BİLEŞENİ (Footer.jsx)
+
+```
+Build a sophisticated footer (Footer.jsx) for the gold portfolio site.
+
+Dark background: bg-obsidian-900
+Top border: 1px border-gold-300/20
+
+FOUR COLUMN GRID:
+
+Col 1 — Brand:
+- Logo + brand name (same as navbar)
+- Tagline: "Zamanın ötesinde değer."
+- Social media icons: Instagram, YouTube, LinkedIn, WhatsApp
+- Each icon: border border-gold-300/30, hover:border-gold-300, rounded-full p-2
+
+Col 2 — Sayfalar:
+- Links to all main pages
+- text-gold-100/60 hover:text-gold-300 transition
+
+Col 3 — Hizmetler:
+- Altın Alım / Satım
+- Portföy Yönetimi
+- Özel Tasarım
+- Sertifikalı Değerleme
+- Yatırım Danışmanlığı
+
+Col 4 — İletişim:
+- Address with map icon
+- Phone with phone icon
+- Email with mail icon
+- Hours
+
+BOTTOM BAR:
+- "© 2025 Sarraf. Tüm hakları saklıdır."
+- Right side: "Gizlilik Politikası | Kullanım Koşulları"
+- thin gold separator above
+
+LIVE GOLD PRICE in footer:
+- Small box: "Anlık Fiyat: ₺X.XXX/gr" with timestamp
+- bg-gold-300/10 border border-gold-300/30 rounded text-gold-200 text-sm
+
+All links styled consistently, smooth hover transitions.
+```
+
+---
+
+## ⚡ PROMPT 10 — ANİMASYON & POLISH (Son dokunuşlar)
+
+```
+Add final animations and polish to the gold portfolio website:
+
+1. PAGE TRANSITIONS:
+Wrap all routes in AnimatePresence from framer-motion.
+Each page: initial={{ opacity: 0, y: 20 }} → animate={{ opacity: 1, y: 0 }} → exit={{ opacity: 0, y: -20 }}
+Transition duration: 0.4s ease
+
+2. GOLD SHIMMER EFFECT:
+Create a CSS animation for gold text/borders:
+@keyframes goldShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+Apply to main headline and price displays:
+background: linear-gradient(90deg, #C9A84C, #F0D99A, #E2C26A, #C9A84C);
+background-size: 200%;
+-webkit-background-clip: text;
+animation: goldShimmer 4s linear infinite;
+
+3. SCROLL REVEAL:
+Create a reusable <ScrollReveal> component using Framer Motion:
+- whileInView={{ opacity: 1, y: 0 }}
+- initial={{ opacity: 0, y: 40 }}
+- viewport={{ once: true, margin: "-100px" }}
+- Wrap all major sections with it
+
+4. CURSOR EFFECT (desktop only):
+Custom gold ring cursor that follows mouse with slight delay (lerp):
+- Outer ring: 32px, border-gold-300, opacity-60
+- Inner dot: 6px, bg-gold-300
+- Hover on links: ring expands to 48px, opacity-100
+
+5. LOADING SCREEN:
+- App-level loading state (2 second delay)
+- Dark screen with animated gold logo
+- Thin gold progress line at bottom animating from 0% to 100%
+- Fade out to reveal the site
+
+6. SMOOTH SCROLLING:
+Add scroll-behavior: smooth to html element.
+Navbar links use smooth scroll to sections on homepage.
+
+7. PRICE FLASH ANIMATION:
+When gold price updates (every 5 min), flash the price text:
+- Green flash for price increase
+- Red flash for price decrease
+Use Framer Motion animate with keyframes: [normal, flash-color, normal]
+
+8. HOVER MICROINTERACTIONS:
+- All buttons: slight scale-up (scale-[1.02]) on hover
+- Product cards: golden glow border appears on hover (box-shadow: 0 0 0 1px #C9A84C)
+- Nav links: gold underline slides in from left on hover
+
+Make sure all animations respect prefers-reduced-motion media query:
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+Disable animations if true.
+```
+
+---
+
+## 🔧 PROMPT 11 — ALTIN FİYAT HOOK'U (useGoldPrice.js)
+
+```
+Create a robust useGoldPrice custom hook (src/hooks/useGoldPrice.js):
+
+The hook should:
+1. Try to fetch real data from https://api.metals.live/v1/spot/gold
+   - This is a free API, no key needed
+   - Response: { gold: 2340.5 } (USD per troy ounce)
+
+2. Also fetch USD/TRY rate from https://api.exchangerate-api.com/v4/latest/USD
+   - Free tier, no key needed
+   - Use response.rates.TRY
+
+3. If either fetch fails, use mock data:
+   const MOCK_GOLD_USD = 2340;
+   const MOCK_TRY_RATE = 32.50;
+
+4. Calculate derived prices:
+   const TROY_OZ_TO_GRAM = 31.1035;
+   const hasPriceGram = (goldUSD * tryRate) / TROY_OZ_TO_GRAM;
+   
+   return {
+     has: hasPriceGram,                    // 24 karat
+     k22: hasPriceGram * 0.916,           // 22 karat
+     k18: hasPriceGram * 0.750,           // 18 karat
+     k14: hasPriceGram * 0.585,           // 14 karat
+     onsUSD: goldUSD,                      // USD per troy ounce
+     onsUSDFormatted: formatUSD(goldUSD),
+     tryRate: tryRate,
+     lastUpdated: new Date().toLocaleTimeString('tr-TR'),
+     loading: boolean,
+     error: boolean,
+     refresh: () => void,
+   }
+
+5. Auto-refresh every 5 minutes (300000ms) using setInterval in useEffect
+
+6. Include helper formatters:
+   formatTRY(amount) → "₺2.345,67" (Turkish locale)
+   formatUSD(amount) → "$2,340.50" (US locale)
+   formatGram(amount) → "8.5 gr"
+
+7. Calculate daily change (mock -2% to +2% random on each load for now, 
+   label it clearly as "simulated" in a comment)
+
+8. Handle all edge cases: network offline, API rate limit (429), malformed response
+
+Export hook as default: export default useGoldPrice;
+```
+
+---
+
+## 🎯 BONUS PROMPT — BLOG SAYFASI (Blog.jsx + BlogPost.jsx)
+
+```
+Create a minimalist luxury blog section for the gold portfolio site:
+
+BLOG LISTING (/blog):
+- Header: "Altın & Yatırım Rehberi"
+- Featured post (full width, large image, prominent)
+- Below: 2-column grid of post cards
+- Each card: image, category tag, title, excerpt, read time, date
+- Categories to filter: "Yatırım", "Piyasa Analizi", "Bakım & Koruma", "Genel"
+
+Create mock data in src/data/blogPosts.js with 6 posts:
+Topics:
+1. "2025'te Altın Yatırımı: Ne Beklemeliyiz?"
+2. "22 Ayar ile 18 Ayar Arasındaki Fark"
+3. "Altın Takılarınızı Uzun Yıllar Koruma Yöntemleri"
+4. "Kuyumcu Seçerken Dikkat Edilmesi Gerekenler"
+5. "Altın Fiyatlarını Etkileyen 5 Temel Faktör"
+6. "Külçe Altın vs. Takı Altını: Hangisi Daha İyi Yatırım?"
+
+BLOG POST DETAIL (/blog/:slug):
+- Hero with post title, author, date, read time, category
+- Content rendered from markdown-like mock content
+- Sidebar: table of contents (sticky), related posts
+- Bottom: "Bu makale yardımcı oldu mu?" feedback + share buttons
+
+Consistent dark luxury styling throughout.
+```
+
+---
+
+## 📱 RESPONSIVE BREAKPOINTS REFERANS
+
+```
+Mobile First Tailwind Breakpoints kullan:
+- default (< 640px): Tek sütun, küçük font
+- sm (640px+): İki sütun grid başlar
+- md (768px+): Navbar tam hale gelir, sidebar'lar açılır
+- lg (1024px+): 3 sütun grid, yan yana layoutlar
+- xl (1280px+): Max genişlik container (1280px), daha büyük fontlar
+- 2xl (1536px+): Çok büyük ekranlar için
+
+Container: max-w-7xl mx-auto px-4 sm:px-6 lg:px-8
+```
+
+---
+
+## 🚀 DEPLOYMENT KONTROL LİSTESİ
+
+```
+Replit'te deploy öncesi kontrol et:
+□ tüm mock data gerçekçi Türk altın fiyatlarıyla dolu mu?
+□ tüm sayfalar mobile'da düzgün görünüyor mu?
+□ Altın fiyat API'si çalışıyor mu (yoksa graceful fallback var mı)?
+□ Form submit çalışıyor mu (en azından success state görünüyor)?
+□ WhatsApp linki doğru numarayla mı?
+□ Tüm sayfalar arası geçişler çalışıyor mu?
+□ Google Fonts yükleniyor mu?
+□ Console'da hata var mı?
+□ Lighthouse score: Performance 80+, Accessibility 90+?
+```
+
+---
+
+*Bu promptlar sırayla Replit AI / Replit Agent'a girilmelidir. Her prompt tek başına tam bir bileşen oluşturur. Projeyi önce Prompt 1 ile kur, ardından diğerlerini sırayla ekle.*
