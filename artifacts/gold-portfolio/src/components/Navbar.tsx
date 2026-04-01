@@ -31,7 +31,8 @@ export function Navbar() {
   ];
 
   return (
-    <header
+    <>
+      <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
         transparent
           ? "bg-transparent py-6"
@@ -108,6 +109,8 @@ export function Navbar() {
         </div>
       </div>
 
+      </header>
+
       {/* Mobile Full Screen Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
@@ -116,26 +119,34 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: "-100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 bg-[#FAF8F3] z-50 flex flex-col p-6"
+            className="fixed inset-0 bg-[#FAF8F3] z-[9999] flex flex-col p-6 overflow-y-auto"
           >
-            <div className="flex justify-between items-center mb-12">
+            <div className="flex justify-between items-center mb-12 shrink-0">
               <div className="flex items-center gap-2">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-primary">
                   <path d="M12 2L2 12L12 22L22 12L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
                 <span className="font-serif text-xl tracking-widest text-foreground">SAYGIN GOLD</span>
               </div>
-              <button onClick={() => setMobileMenuOpen(false)} className="text-muted-foreground">
+              <button 
+                onClick={() => setMobileMenuOpen(false)} 
+                className="p-2 text-muted-foreground hover:text-primary transition-colors"
+                aria-label="Close menu"
+              >
                 <X className="w-8 h-8" />
               </button>
             </div>
 
-            <nav className="flex flex-col gap-6 text-center">
+            <nav className="flex flex-col gap-8 text-center my-auto px-4">
               {navLinks.map((link) => (
                 <Link key={link.name} href={link.path}>
                   <div
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`text-2xl font-serif cursor-pointer transition-colors ${location === link.path ? "text-primary" : "text-foreground hover:text-primary"}`}
+                    className={`text-3xl font-serif cursor-pointer transition-all duration-300 ${
+                      location === link.path 
+                        ? "text-primary scale-105" 
+                        : "text-foreground hover:text-primary"
+                    }`}
                   >
                     {link.name}
                   </div>
@@ -143,12 +154,18 @@ export function Navbar() {
               ))}
             </nav>
 
-            <div className="mt-auto flex flex-col gap-4">
-              <a href="https://wa.me/905555555555" className="flex items-center justify-center gap-2 border border-border p-4 text-foreground">
-                <FaWhatsapp className="w-5 h-5 text-green-500" /> WhatsApp Destek
+            <div className="mt-12 flex flex-col gap-4 shrink-0 px-4">
+              <a 
+                href="https://wa.me/905555555555" 
+                className="flex items-center justify-center gap-2 border border-border p-5 text-foreground hover:bg-secondary transition-colors"
+              >
+                <FaWhatsapp className="w-6 h-6 text-green-500" /> WhatsApp Destek
               </a>
               <Link href="/contact">
-                <div onClick={() => setMobileMenuOpen(false)} className="bg-primary text-primary-foreground p-4 text-center font-medium uppercase tracking-wider cursor-pointer">
+                <div 
+                  onClick={() => setMobileMenuOpen(false)} 
+                  className="bg-primary text-primary-foreground p-5 text-center font-medium uppercase tracking-widest cursor-pointer hover:bg-primary/95 shadow-lg active:scale-[0.98] transition-all"
+                >
                   Bize Ulaşın
                 </div>
               </Link>
@@ -156,6 +173,6 @@ export function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }
