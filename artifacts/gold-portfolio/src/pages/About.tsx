@@ -1,5 +1,5 @@
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { Award, Target, Users, Gem } from "lucide-react";
+import { Award, Target, Users, ShieldCheck } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
@@ -85,7 +85,7 @@ export default function About() {
             <ScrollReveal direction="left" className="order-1 lg:order-2">
               <h2 className="text-4xl font-serif mb-6">Ustalığın İzi</h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-6 font-light">
-                SARRAF, temelleri Kapalıçarşı'nın tarihi dokusunda atılmış bir mücevher ve yatırım evidir. Birinci nesilden devralınan dürüstlük ve zanaatkarlık mirasını, modern dünyanın standartlarıyla birleştirerek yola devam ediyoruz.
+                Saygin Jewellery & Gold, temelleri Kapalıçarşı'nın tarihi dokusunda atılmış bir mücevher ve yatırım evidir. Birinci nesilden devralınan dürüstlük ve zanaatkarlık mirasını, modern dünyanın standartlarıyla birleştirerek yola devam ediyoruz.
               </p>
               <p className="text-muted-foreground text-lg leading-relaxed font-light">
                 Bize göre her mücevher bir hikaye anlatır; her yatırım bir geleceği inşa eder. Bu yüzden tezgahımızdan çıkan her parça ve yaptığımız her işlem, adımızın taşıdığı ağırlığa layık olmak zorundadır.
@@ -97,7 +97,7 @@ export default function About() {
             <ScrollReveal direction="right">
               <h2 className="text-4xl font-serif mb-6">Güven İnşa Ediyoruz</h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-6 font-light">
-                Müşterilerimizle kurduğumuz ilişki bir alışverişten çok daha fazlasıdır. İster düğün hazırlığındaki bir çift, ister büyük ölçekli bir yatırımcı olsun; SARRAF kapısından içeri giren herkes aynı şeffaflık, dürüstlük ve özenle karşılanır.
+                Müşterilerimizle kurduğumuz ilişki bir alışverişten çok daha fazlasıdır. İster düğün hazırlığındaki bir çift, ister büyük ölçekli bir yatırımcı olsun; Saygin Gold kapısından içeri giren herkes aynı şeffaflık, dürüstlük ve özenle karşılanır.
               </p>
               <p className="text-muted-foreground text-lg leading-relaxed font-light">
                 Uluslararası sertifikasyonlarımız, kusursuz işçilik garantimiz ve canlı piyasaya entegre fiyatlandırmamızla altın sektöründe standartları belirliyoruz.

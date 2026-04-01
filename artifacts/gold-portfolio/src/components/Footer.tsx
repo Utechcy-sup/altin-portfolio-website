@@ -17,7 +17,7 @@ export function Footer() {
                 <path d="M12 2L2 12L12 22L22 12L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M12 6L6 12L12 18L18 12L12 6Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-              <span className="font-serif text-2xl tracking-widest text-foreground">SARRAF</span>
+              <span className="font-serif text-2xl tracking-widest text-foreground">SAYGIN GOLD</span>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed">
               30 yıllık tecrübe ile Kapalıçarşı'nın kalbinden, en değerli anlarınıza eşlik eden sertifikalı altın ve mücevherat.
@@ -75,14 +75,14 @@ export function Footer() {
               <p>Mollafenari, Nuruosmaniye Cd. No:1</p>
               <p>Fatih / İstanbul</p>
               <p className="mt-4"><a href="tel:+902125555555" className="hover:text-primary transition-colors">+90 212 555 55 55</a></p>
-              <p><a href="mailto:info@sarraf.com.tr" className="hover:text-primary transition-colors">info@sarraf.com.tr</a></p>
+              <p><a href="mailto:info@saygingold.com.tr" className="hover:text-primary transition-colors">info@saygingold.com.tr</a></p>
             </address>
           </div>
 
         </div>
 
         <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} SARRAF. Tüm hakları saklıdır.</p>
+          <p>&copy; {new Date().getFullYear()} Saygin Gold & Saygin Jewellery. Tüm hakları saklıdır.</p>
           <div className="flex items-center gap-4">
             <a href="#" className="hover:text-primary transition-colors">Gizlilik Politikası</a>
             <a href="#" className="hover:text-primary transition-colors">Kullanım Şartları</a>

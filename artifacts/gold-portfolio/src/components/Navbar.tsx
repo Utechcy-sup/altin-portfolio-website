@@ -42,7 +42,7 @@ export function Navbar() {
                 <path d="M12 2L2 12L12 22L22 12L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M12 6L6 12L12 18L18 12L12 6Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-              <span className="font-serif text-2xl tracking-widest text-foreground group-hover:text-primary transition-colors">SARRAF</span>
+              <span className="font-serif text-2xl tracking-widest text-foreground group-hover:text-primary transition-colors">SAYGIN GOLD</span>
             </div>
           </Link>
 
@@ -109,7 +109,7 @@ export function Navbar() {
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-primary">
                   <path d="M12 2L2 12L12 22L22 12L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                <span className="font-serif text-xl tracking-widest text-foreground">SARRAF</span>
+                <span className="font-serif text-xl tracking-widest text-foreground">SAYGIN GOLD</span>
               </div>
               <button onClick={() => setMobileMenuOpen(false)} className="text-muted-foreground">
                 <X className="w-8 h-8" />

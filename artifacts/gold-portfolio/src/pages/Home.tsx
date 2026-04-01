@@ -1,12 +1,47 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import { GoldTicker } from "@/components/GoldTicker";
 import { ProductCard } from "@/components/ProductCard";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { PRODUCTS } from "@/data/products";
-import { Shield, TrendingUp, Clock, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { Shield, TrendingUp, Clock, ChevronRight, ChevronLeft } from "lucide-react";
+import { useState, useEffect } from "react";
 import { Area, AreaChart, ResponsiveContainer } from "recharts";
+
+const HERO_SLIDES = [
+  {
+    image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+    eyebrow: "Babadan Oğula Gelenek",
+    title: "Zamanın Ötesinde",
+    titleItalic: "Değer",
+    subtitle: "Kapalıçarşı'nın kalbinden, en saf haliyle sunulan altın yatırımları ve el işçiliği mücevheratlar.",
+    cta: { primary: { text: "Koleksiyonu Keşfet", href: "/collections" }, secondary: { text: "Canlı Fiyatlar", href: "/gold-prices" } },
+  },
+  {
+    image: "https://images.unsplash.com/photo-1610375461246-83df859d849d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+    eyebrow: "Yatırımın Altın Adresi",
+    title: "Has Altın",
+    titleItalic: "Yatırımı",
+    subtitle: "Uluslararası piyasalara entegre, sertifikalı külçe ve yatırım altınlarıyla geleceğinizi güvence altına alın.",
+    cta: { primary: { text: "Altın Fiyatları", href: "/gold-prices" }, secondary: { text: "Teklif Al", href: "/contact" } },
+  },
+  {
+    image: "https://images.unsplash.com/photo-1515562529859-bd15b08e3e43?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+    eyebrow: "Özel Tasarım Atölyesi",
+    title: "Her Parça Bir",
+    titleItalic: "Sanat Eseri",
+    subtitle: "Ustalarımızın elleriyle şekillenen, yalnızca sizin için tasarlanan mücevherler Saygin Jewellery'de.",
+    cta: { primary: { text: "Koleksiyonu Gör", href: "/collections" }, secondary: { text: "Hakkımızda", href: "/about" } },
+  },
+  {
+    image: "https://images.unsplash.com/photo-1573408301185-9521ecff9ee7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+    eyebrow: "30 Yıllık Güven",
+    title: "Kalite ve",
+    titleItalic: "Güvence",
+    subtitle: "Türkiye'nin köklü altın geleneğini modern standartlarla birleştiren, sertifikalı ve garantili ürünler.",
+    cta: { primary: { text: "Hakkımızda", href: "/about" }, secondary: { text: "İletişim", href: "/contact" } },
+  },
+];
 
 const miniChartData = [
   { value: 2000 }, { value: 2050 }, { value: 2020 }, { value: 2100 }, 
@@ -16,48 +51,138 @@ const miniChartData = [
 
 export default function Home() {
   const [email, setEmail] = useState("");
-  
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [direction, setDirection] = useState(1);
+
   const featuredProducts = PRODUCTS.filter(p => p.featured).slice(0, 3);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDirection(1);
+      setActiveSlide(prev => (prev + 1) % HERO_SLIDES.length);
+    }, 5500);
+    return () => clearInterval(timer);
+  }, []);
+
+  const goToSlide = (index: number) => {
+    setDirection(index > activeSlide ? 1 : -1);
+    setActiveSlide(index);
+  };
+
+  const prevSlide = () => {
+    setDirection(-1);
+    setActiveSlide(prev => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+  };
+
+  const nextSlide = () => {
+    setDirection(1);
+    setActiveSlide(prev => (prev + 1) % HERO_SLIDES.length);
+  };
+
+  const slide = HERO_SLIDES[activeSlide];
+
+  const slideVariants = {
+    enter: (dir: number) => ({ opacity: 0, x: dir > 0 ? 80 : -80 }),
+    center: { opacity: 1, x: 0 },
+    exit: (dir: number) => ({ opacity: 0, x: dir > 0 ? -80 : 80 }),
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Hero Section */}
+      {/* Hero Slider */}
       <section className="relative h-screen flex flex-col justify-center items-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
-            alt="Gold Texture" 
-            className="w-full h-full object-cover opacity-20"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
-        </div>
-        
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
+        {/* Background Image with crossfade */}
+        <AnimatePresence initial={false}>
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
+            key={activeSlide + "-bg"}
+            className="absolute inset-0 z-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2 }}
           >
-            <span className="text-primary tracking-[0.3em] text-sm uppercase mb-6 block font-medium">Babadan Oğula Gelenek</span>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-foreground mb-8 leading-tight">
-              Zamanın Ötesinde <br/> <span className="gold-text-gradient italic">Değer</span>
-            </h1>
-            <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light">
-              Kapalıçarşı'nın kalbinden, en saf haliyle sunulan altın yatırımları ve el işçiliği mücevheratlar.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/collections">
-                <div className="bg-primary text-primary-foreground px-8 py-4 text-sm font-medium cursor-pointer hover:bg-primary/90 transition-colors uppercase tracking-wider min-w-[200px]">
-                  Koleksiyonu Keşfet
-                </div>
-              </Link>
-              <Link href="/gold-prices">
-                <div className="bg-transparent border border-primary text-primary px-8 py-4 text-sm font-medium cursor-pointer hover:bg-primary/10 transition-colors uppercase tracking-wider min-w-[200px]">
-                  Canlı Fiyatlar
-                </div>
-              </Link>
-            </div>
+            <img
+              src={slide.image}
+              alt="Saygin Gold"
+              className="w-full h-full object-cover opacity-30"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/20" />
           </motion.div>
+        </AnimatePresence>
+
+        {/* Slide Content */}
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20 w-full">
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              key={activeSlide}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] }}
+            >
+              <span className="text-primary tracking-[0.3em] text-sm uppercase mb-6 block font-medium">
+                {slide.eyebrow}
+              </span>
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-foreground mb-8 leading-tight">
+                {slide.title} <br />
+                <span className="gold-text-gradient italic">{slide.titleItalic}</span>
+              </h1>
+              <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light">
+                {slide.subtitle}
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Link href={slide.cta.primary.href}>
+                  <div className="bg-primary text-primary-foreground px-8 py-4 text-sm font-medium cursor-pointer hover:bg-primary/90 transition-colors uppercase tracking-wider min-w-[200px]">
+                    {slide.cta.primary.text}
+                  </div>
+                </Link>
+                <Link href={slide.cta.secondary.href}>
+                  <div className="bg-transparent border border-primary text-primary px-8 py-4 text-sm font-medium cursor-pointer hover:bg-primary/10 transition-colors uppercase tracking-wider min-w-[200px]">
+                    {slide.cta.secondary.text}
+                  </div>
+                </Link>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Arrow Controls */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 border border-primary/40 text-primary/70 hover:border-primary hover:text-primary flex items-center justify-center transition-colors bg-background/20 backdrop-blur-sm"
+          aria-label="Önceki"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 border border-primary/40 text-primary/70 hover:border-primary hover:text-primary flex items-center justify-center transition-colors bg-background/20 backdrop-blur-sm"
+          aria-label="Sonraki"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+
+        {/* Dot Navigation */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
+          {HERO_SLIDES.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goToSlide(i)}
+              aria-label={`Slayt ${i + 1}`}
+              className={`transition-all duration-500 ${
+                i === activeSlide
+                  ? "w-8 h-[2px] bg-primary"
+                  : "w-3 h-[2px] bg-primary/30 hover:bg-primary/60"
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Slide counter */}
+        <div className="absolute bottom-10 right-8 z-20 text-primary/50 text-xs tracking-widest font-light">
+          {String(activeSlide + 1).padStart(2, "0")} / {String(HERO_SLIDES.length).padStart(2, "0")}
         </div>
       </section>
 
@@ -195,7 +320,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                text: "Yıllardır tüm altın yatırımlarımı SARRAF aracılığıyla yapıyorum. Şeffaf fiyat politikaları ve güvenilirlikleri eşsiz.",
+                text: "Yıllardır tüm altın yatırımlarımı Saygin Gold aracılığıyla yapıyorum. Şeffaf fiyat politikaları ve güvenilirlikleri eşsiz.",
                 author: "Mehmet K.",
                 title: "Yatırımcı"
               },
