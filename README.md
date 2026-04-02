@@ -2,6 +2,13 @@
 
 pnpm tabanlı monorepo: React + Vite ön yüzü (`gold-portfolio`), Express API (`api-server`) ve paylaşılan `lib/*` paketleri.
 
+## Özellikler
+
+- **Canlı Altın/Döviz Takibi:** HaremAltin Socket.io entegrasyonu ile anlık fiyatlar.
+- **Akıllı Fallback:** Socket bağlantısı koptuğunda BigPara API üzerinden otomatik yedekleme.
+- **Hesaplayıcı:** Farklı ayarlarda altın gram/fiyat hesaplama aracı.
+- **Responsive Tasarım:** Tüm cihazlarla tam uyumlu, premium grafikler ve animasyonlar.
+
 ## Gereksinimler
 
 - [Node.js](https://nodejs.org/) (LTS önerilir)

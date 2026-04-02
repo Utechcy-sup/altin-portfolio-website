@@ -58,7 +58,6 @@ export default function Home() {
           animate={{ opacity: 1, y: 0, x: 0 }}
           transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
           viewport={{ once: true }}
-          className="relative w-full h-1/2 md:w-1/2 md:h-full overflow-hidden cursor-pointer group"
         >
           <Link href="/collections">
             <div className="w-full h-full">
