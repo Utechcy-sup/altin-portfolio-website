@@ -68,7 +68,7 @@ export interface UseHaremAltinReturn {
 
 const SOCKET_URL = 'wss://socket.haremaltin.com';
 const BIGPARA_URL = 'https://api.bigpara.hurriyet.com.tr/doviz/headerlist/anasayfa';
-const FALLBACK_INTERVAL_MS = 30_000; // 30 saniyede bir BigPara'dan çek
+const FALLBACK_INTERVAL_MS = 10_000; // 10 saniyede bir BigPara'dan çek (daha taze veri)
 
 // BigPara sembol → HaremAltin anahtar eşlemesi
 const BIGPARA_MAP: Record<string, keyof HaremAltinPrices> = {
@@ -192,10 +192,11 @@ export function useHaremAltin(): UseHaremAltinReturn {
   // ── Socket.io Bağlantısı ──────────────────────────────────────────────
   useEffect(() => {
     const socket = io(SOCKET_URL, {
-      transports: ['websocket'],
-      reconnectionAttempts: 5,
-      reconnectionDelay: 3000,
-      timeout: 10000,
+      transports: ['websocket', 'polling'], // Polling desteği ekleyerek bazı ağlarda daha hızlı bağlanmasını sağlar.
+      reconnectionAttempts: 10,
+      reconnectionDelay: 2000,
+      timeout: 15000,
+      forceNew: true,
     });
 
     socketRef.current = socket;
