@@ -116,7 +116,7 @@ function parseSocketData(payload: Record<string, any>): Partial<HaremAltinPrices
   const result: Partial<HaremAltinPrices> = {};
   for (const [key, val] of Object.entries(data)) {
     if (key === 'meta' || !val || typeof val !== 'object') continue;
-    
+
     // HaremAltin Mapping: TEK_YENI is actually the "Yeni Tam" price
     const mappedKey = key === 'TEK_YENI' ? 'TAM_YENI' : key;
 
