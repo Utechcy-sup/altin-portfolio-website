@@ -15,11 +15,11 @@ Sistemimiz, ölçeklenebilir ve modern bir veritabanı katmanı üzerine kurulud
 ## 2. Mevcut Tablo Yapıları
 
 ### **A. `gold_price_history` (Fiyat Arşivi)**
-Canlı fiyatları saniye saniye veya saat saat kaydetmek için kullanılır. Gerçek grafikler için veri sağlar.
-- `id`: Benzersiz anahtar.
-- `symbol`: Ürün sembolü (Altın, Ayar22 vb.).
-- `buy_price` | `sell_price`: O anki fiyatlar.
-- `timestamp`: Verinin kaydedildiği an.
+Canlı fiyatları akıllı bir şekilde arşivler. Gerçek grafikler için veri sağlar.
+- **Çalışma Prensibi:** Backend (api-server) tarafındaki `GoldWorker` tarafından yönetilir.
+- **Kayıt Aralığı:** Saniyelik veri akışından sadece **30 dakikada bir** "anlık görüntü (snapshot)" alarak kaydeder.
+- **Arşivlenen Semboller:** Has Altın, 22 Ayar, Dolar, Euro, Ons ve Çeyrek Altın.
+- **Veri Yapısı:** `id`, `symbol`, `buy_price`, `sell_price`, `timestamp`.
 
 ### **B. `customers` (Müşteri Yönetimi)**
 Müşteri kayıtlarını ve notlarını tutmak için kullanılan alandır.
@@ -60,4 +60,16 @@ Sitenizi Vercel'e (veya API sunucunuzu başka bir yere) yüklediğinizde:
 *Böylece şifreniz hiçbir zaman kodun içinde görünmez ve %100 güvenli kalır.*
 
 ---
-*Saygın Gold - Veritabanı Yönetim Sistemi v1.1*
+
+## 5. Veri Tohumlama (Seeding)
+Varsayılan kullanıcıları veya başlangıç verilerini eklemek için seed mekanizması kullanılır.
+
+**Admin Kullanıcısı Eklemek:**
+Eğer veritabanı boşsa veya yeni bir admin eklemek gerekiyorsa şu komutu çalıştırın:
+```bash
+pnpm --filter @workspace/db run seed
+```
+*Bu komut varsayılan olarak `admin` / `admin123` bilgilerini ekler.*
+
+---
+*Saygın Gold - Veritabanı Yönetim Sistemi v1.2*

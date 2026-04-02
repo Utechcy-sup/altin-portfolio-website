@@ -1,4 +1,4 @@
-import { Switch, Route, Router as WouterRouter } from "wouter";
+import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -15,6 +15,7 @@ import About from "@/pages/About";
 import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
 import Contact from "@/pages/Contact";
+import Admin from "@/pages/Admin";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ function Router() {
     <AnimatePresence mode="wait">
       <Switch>
         <Route path="/" component={Home} />
+        <Route path="/admin" component={Admin} />
         <Route path="/collections" component={Collections} />
         <Route path="/collections/:id" component={ProductDetail} />
         <Route path="/gold-prices" component={GoldPrices} />
@@ -36,14 +38,25 @@ function Router() {
   );
 }
 
+function MainLayout() {
+  const [location] = useLocation();
+  const isAdmin = location.startsWith("/admin");
+
+  return (
+    <>
+      {!isAdmin && <Navbar />}
+      <Router />
+      {!isAdmin && <Footer />}
+    </>
+  );
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-          <Navbar />
-          <Router />
-          <Footer />
+          <MainLayout />
         </WouterRouter>
         <Toaster />
       </TooltipProvider>
