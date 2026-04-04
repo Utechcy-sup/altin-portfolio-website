@@ -3,7 +3,9 @@ import { FaInstagram, FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/f
 import { useGoldPrice, formatTRY } from "@/hooks/useGoldPrice";
 
 export function Footer() {
-  const { has, loading } = useGoldPrice();
+  const { prices, status } = useGoldPrice();
+  const loading = status === "connecting";
+  const has = prices?.ALTIN?.satis || 0;
 
   return (
     <footer className="bg-background border-t border-border pt-16 pb-8">

@@ -38,11 +38,14 @@ function StatusBadge({ status }: { status: string }) {
   // Canlı bağlantı varken (HaremAltin) rozeti gizle, kullanıcıya kalabalık yapmasın
   if (status === "connected") return null;
 
-  const cfg = {
+  const STATUS_CONFIG = {
     fallback:  { icon: <Wifi className="w-3 h-3" />, label: "Gecikmeli Veri (Piyasa)", cls: "bg-amber-500/20 text-amber-400 border-amber-500/40" },
     connecting:{ icon: <RefreshCw className="w-3 h-3 animate-spin" />, label: "Bağlanıyor…", cls: "bg-blue-500/20 text-blue-400 border-blue-500/40" },
     error:     { icon: <WifiOff className="w-3 h-3" />, label: "Bağlantı Yok", cls: "bg-red-500/20 text-red-400 border-red-500/40" },
-  }[status as keyof typeof cfg] ?? { icon: null, label: status, cls: "" };
+  };
+
+  const cfg = STATUS_CONFIG[status as keyof typeof STATUS_CONFIG] ?? { icon: null, label: status, cls: "" };
+
 
   return (
     <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-xs font-medium ${cfg.cls}`}>

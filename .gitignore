@@ -50,3 +50,7 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+
+# Secret Service Accounts
+*firebase-adminsdk*.json
+*-firebase-adminsdk*.json
