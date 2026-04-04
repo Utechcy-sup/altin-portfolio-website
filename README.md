@@ -14,7 +14,7 @@ pnpm tabanlı monorepo: React + Vite ön yüzü (`gold-portfolio`), Express API 
 - [Node.js](https://nodejs.org/) (LTS önerilir)
 - [pnpm](https://pnpm.io/) (npm ile: `npm install -g pnpm`)
 
-## Kurulum
+## Kurulum ve Çalıştırma
 
 Depo kökünde:
 
@@ -22,94 +22,39 @@ Depo kökünde:
 pnpm install
 ```
 
-**Windows:** Kök `package.json` içindeki `preinstall` betiği `sh` kullanır; sistemde `sh` yoksa kurulum şu şekilde yapılabilir:
+**Geliştirme (Local Dev):**
+Ön yüz (Vite) ve sunucuyu aynı anda çalıştırmak için iki terminal kullanabilirsiniz:
+1. Terminal: `pnpm --filter @workspace/api-server run dev` (API)
+2. Terminal: `pnpm --filter @workspace/gold-portfolio run dev` (Frontend)
 
-```bash
-pnpm install --ignore-scripts
-```
+## Railway Deployment (Monolitik)
 
-macOS/Linux’ta Git veya uyumlu bir shell ile normal `pnpm install` genelde sorunsuz çalışır.
+Bu proje Railway üzerinde tek bir servis olarak (Backend + Static Frontend) çalışacak şekilde yapılandırılmıştır.
 
-## Geliştirme ortamı
+1. Projeyi Railway'de Github üzerinden yeni proje olarak ekleyin.
+2. Railway otomatik olarak `pnpm` kuracak ve projeyi derleyecektir.
+3. Ayarlardaki (Variables) kısma şu değişkenleri ekleyin:
+   - `DATABASE_URL` = neon.tech veya başka bir PostgreSQL bağlantınız
+4. Uygulama başlatıldığında Node Express sunucusu hem `/api` isteklerini karşılayacak hem de React arayüzünü sunacaktır.
 
-Ön yüz ve API ayrı süreçlerde çalışır. İki terminal kullanın.
-
-### 1. API (`@workspace/api-server`)
-
-`artifacts/api-server/.env` örnek değerler:
-
-| Değişken       | Açıklama                          |
-|----------------|-----------------------------------|
-| `PORT`         | API portu (örn. `5000`)           |
-| `DATABASE_URL` | PostgreSQL bağlantı URL’si        |
-| `NODE_ENV`     | Örn. `development`                |
-
-Kod değiştiyse önce derleyin, sonra başlatın:
-
-**cmd.exe:**
-
-```bat
-cd artifacts\api-server
-pnpm run build
-set PORT=5000
-set NODE_ENV=development
-node --enable-source-maps .\dist\index.mjs
-```
-
-**PowerShell:**
-
-```powershell
-$env:PORT="5000"; $env:NODE_ENV="development"
-Set-Location artifacts/api-server
-pnpm run build   # gerekirse
-node --enable-source-maps ./dist/index.mjs
-```
-
-> Not: Çalışan uygulama `process.env.PORT` okur; `.env` dosyası otomatik yüklenmez—portu ortam değişkeni veya süreç yöneticinizle verin.
-
-Paketteki `pnpm run dev` betiği Unix `export` kullanır; Windows’ta yukarıdaki `build` + `node` akışını kullanın.
-
-### 2. Ön yüz (`@workspace/gold-portfolio`)
-
-`artifacts/gold-portfolio/.env` içeriği referans için:
-
-- `PORT=3000` — Vite geliştirme sunucusu
-- `BASE_PATH=/` — yayın tabanı
-- `VITE_API_URL=http://localhost:5000` — API adresi
-
-`vite.config.ts`, yapılandırma yüklenirken **yalnızca ortam değişkenlerini** okur; `.env` otomatik bağlanmaz. Geliştirme için `PORT` ve `BASE_PATH`’i shell’de verin:
-
-**PowerShell (depo kökünden):**
-
-```powershell
-$env:PORT="3000"; $env:BASE_PATH="/"
-pnpm --filter @workspace/gold-portfolio run dev
-```
-
-**bash:**
-
-```bash
-PORT=3000 BASE_PATH=/ pnpm --filter @workspace/gold-portfolio run dev
-```
-
-- Yerel: `http://localhost:3000/`
-- API: `http://localhost:5000/` (ön yüz `VITE_API_URL` ile hizalanır)
+*Not: Veritabanı tablolarının oluşturulması için (ilklendirme) Railway üzerinden command paletten `npm run push` komutunu çalıştırabilirsiniz.*
 
 ## Kök script’ler
 
 | Komut            | Açıklama                                                |
 |------------------|---------------------------------------------------------|
-| `pnpm run build` | Tip kontrolü + workspace içinde tanımlı `build` script’leri |
-| `pnpm run typecheck` | TypeScript kontrolü (lib’ler + artifacts/scripts) |
+| `pnpm run build` | Frontend Vite ve Backend API'sini yayına hazır derler.  |
+| `pnpm run start` | Backend Express uygulamasını başlatır (Railway için dizayn edilmiştir). |
+| `pnpm run push`  | Veritabanı semasını Drizzle ile DB'ye pushlar.          |
 
 ## Dizin özeti
 
 | Yol                    | İçerik                                      |
 |------------------------|---------------------------------------------|
 | `artifacts/gold-portfolio` | React, Vite, Tailwind, Wouter               |
-| `artifacts/api-server`   | Express 5, Drizzle ile uyumlu `lib/db`      |
-| `lib/*`                | `db`, `api-zod`, `api-spec`, `api-client-react` vb. |
-| `scripts`              | Yardımcı script’ler                         |
+| `artifacts/api-server`   | Express Node Server                         |
+| `lib/db`               | Veritabanı ve Drizzle Schema dosyaları      |
+| `scripts`              | Yardımcı betikler                           |
 
 ## Güvenlik: paket yaşı
 
