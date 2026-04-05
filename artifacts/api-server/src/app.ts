@@ -11,16 +11,20 @@ const app: Express = express();
 app.use((req, res, next) => {
   const origin = req.headers.origin;
   
-  // Railway'deki ortam değişkeninden virgülle ayrılmış adresleri çekiyoruz (Production için)
+  // Railway Ortam değişkeninden okunanlar + Sizin direkt Vercel adresiniz
   const envAllowed = process.env.ALLOWED_ORIGIN ? process.env.ALLOWED_ORIGIN.split(",") : [];
   
   const allowedOrigins = [
-    "http://localhost:5173", // Lokal geliştirme için her zaman açık kalması faydalıdır
+    "http://localhost:5173", 
+    "https://altin-portfolio-website-gold-portfo.vercel.app", // Sizin Vercel siteniz
     ...envAllowed
   ];
 
   // Eğer gelen istek bizim izin verdiğimiz listedeyse, izin ver; değilse engelle
-  if (origin && allowedOrigins.includes(origin)) {
+  // Kullanıcı panelden sonuna slash eklemiş olabilir diye trim kontrolü de ekledik
+  const isAllowed = origin && allowedOrigins.some(allowed => origin.startsWith(allowed.replace(/\/$/, '')));
+  
+  if (isAllowed) {
     res.setHeader("Access-Control-Allow-Origin", origin);
   } else if (!origin) {
     // Mobil uygulama, Postman veya sunucu içi haberleşme (origin başlığı olmaz)
