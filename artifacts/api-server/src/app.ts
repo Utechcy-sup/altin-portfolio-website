@@ -26,7 +26,14 @@ app.use(
     },
   }),
 );
-app.use(cors());
+const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || "*";
+
+app.use(
+  cors({
+    origin: ALLOWED_ORIGIN === "*" ? "*" : ALLOWED_ORIGIN.split(","),
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -40,7 +47,7 @@ if (process.env.NODE_ENV === "production") {
   );
   app.use(express.static(publicPath));
 
-  app.get("*", (req, res) => {
+  app.get("/*", (req, res) => {
     if (req.path.startsWith("/api")) return;
     res.sendFile(path.join(publicPath, "index.html"));
   });

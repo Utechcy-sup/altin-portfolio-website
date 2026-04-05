@@ -8,7 +8,8 @@ import {
 import { useToast } from "@/hooks/use-toast";
 
 // Bu panelde Navbar/Footer istemiyoruz, tertemiz bir yönetim alanı
-const API_BASE = "/api/admin";
+// Vercel/Railway Separation: API base is now dynamic from env vars
+const API_BASE = (import.meta.env.VITE_API_URL || "") + "/api/admin";
 
 export default function Admin() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

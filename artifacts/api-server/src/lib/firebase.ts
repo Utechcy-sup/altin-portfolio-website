@@ -10,24 +10,35 @@ if (!admin.apps.length) {
     let credential;
 
     if (serviceAccountVar) {
-      // JSON formatında ise parse et, değilse dosya yolu olarak kabul et
+      logger.info("Railway: FIREBASE_SERVICE_ACCOUNT ortam değişkeni algılandı.");
       try {
-        credential = admin.credential.cert(JSON.parse(serviceAccountVar));
+        // Full JSON string ise parse et
+        const jsonContent = JSON.parse(serviceAccountVar);
+        credential = admin.credential.cert(jsonContent);
       } catch (e) {
+        // String olarak dosya yolu girildiyse
         credential = admin.credential.cert(serviceAccountVar);
       }
-      logger.info("Firebase Admin initialized with FIREBASE_SERVICE_ACCOUNT env var.");
     } else {
-      // Çevre değişkeni yoksa yerel geliştirme path'ine bak
+      // Yerel geliştirme ortamı kontrolü
+      logger.warn("UYARI: FIREBASE_SERVICE_ACCOUNT bulunamadı. Yerel geliştirme dosyasına bakılıyor...");
       credential = admin.credential.cert(DEV_SERVICE_ACCOUNT_PATH);
-      logger.info(`Firebase Admin initialized with local JSON: ${DEV_SERVICE_ACCOUNT_PATH}`);
     }
 
     admin.initializeApp({
       credential,
     });
-  } catch (error) {
-    logger.error({ error }, "Failed to initialize Firebase Admin. Please check your Service Account JSON.");
+    logger.info("✅ Firebase Admin başarıyla başlatıldı.");
+  } catch (error: any) {
+    logger.error({ 
+      message: error?.message, 
+      code: error?.code 
+    }, "❌ Firebase Başlatılamadı! Lütfen Railway panelinde FIREBASE_SERVICE_ACCOUNT değişkenini kontrol edin.");
+    
+    // Veritabanı olmadan uygulama çalışamaz, bu yüzden süreci durduruyoruz
+    if (process.env.NODE_ENV === "production") {
+      process.exit(1);
+    }
   }
 }
 
