@@ -62,6 +62,10 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get("/", (req, res) => {
+  res.send("Railway API OK");
+});
+
 app.use("/api", router);
 
 // Backend API routes are handled via /api

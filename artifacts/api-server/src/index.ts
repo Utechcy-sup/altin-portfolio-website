@@ -3,8 +3,8 @@ import app from "./app";
 import { logger } from "./lib/logger";
 import { startGoldWorker } from "./lib/gold-worker";
 
-// Railway PORT değişkenini bazen gecikmeli veya boş gönderebilir. Çökmemesi için varsayılan 5001.
-const rawPort = process.env["PORT"] || "5001";
+// Railway, Cloud Run vb. yapıların varsayılan beklediği port genellikle 8080'dir.
+const rawPort = process.env.PORT || "8080";
 const port = Number(rawPort);
 
 if (Number.isNaN(port) || port <= 0) {
