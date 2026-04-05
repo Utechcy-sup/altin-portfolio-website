@@ -3,14 +3,8 @@ import app from "./app";
 import { logger } from "./lib/logger";
 import { startGoldWorker } from "./lib/gold-worker";
 
-const rawPort = process.env["PORT"];
-
-if (!rawPort) {
-  throw new Error(
-    "PORT environment variable is required but was not provided.",
-  );
-}
-
+// Railway PORT değişkenini bazen gecikmeli veya boş gönderebilir. Çökmemesi için varsayılan 5001.
+const rawPort = process.env["PORT"] || "5001";
 const port = Number(rawPort);
 
 if (Number.isNaN(port) || port <= 0) {
