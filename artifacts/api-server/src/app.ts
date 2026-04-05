@@ -11,11 +11,11 @@ const app: Express = express();
 app.use((req, res, next) => {
   const origin = req.headers.origin;
   
-  // İzin verilen adresler (Railway'den ALLOWED_ORIGIN olarak da virgülle ayırıp eklenebilir)
+  // Railway'deki ortam değişkeninden virgülle ayrılmış adresleri çekiyoruz (Production için)
   const envAllowed = process.env.ALLOWED_ORIGIN ? process.env.ALLOWED_ORIGIN.split(",") : [];
+  
   const allowedOrigins = [
-    "https://altin-portfolio-website-gold-portfo.vercel.app", // Sizin Vercel siteniz
-    "http://localhost:5173", // Lokal geliştirme
+    "http://localhost:5173", // Lokal geliştirme için her zaman açık kalması faydalıdır
     ...envAllowed
   ];
 
