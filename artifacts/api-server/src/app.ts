@@ -39,18 +39,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", router);
 
-// Production Static Serving
-if (process.env.NODE_ENV === "production") {
-  const publicPath = path.resolve(
-    import.meta.dirname,
-    "../../gold-portfolio/dist/public"
-  );
-  app.use(express.static(publicPath));
-
-  app.get("/*", (req, res) => {
-    if (req.path.startsWith("/api")) return;
-    res.sendFile(path.join(publicPath, "index.html"));
-  });
-}
+// Backend API routes are handled via /api
+// Static files are served by Vercel, so no need for static serving here.
 
 export default app;
