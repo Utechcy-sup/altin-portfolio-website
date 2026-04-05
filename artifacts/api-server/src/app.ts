@@ -7,6 +7,37 @@ import { logger } from "./lib/logger";
 
 const app: Express = express();
 
+// 🛡️ Güvenli CORS Ayarı (Sadece Sizin Sitenize İzin Verir)
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  
+  // İzin verilen adresler (Railway'den ALLOWED_ORIGIN olarak da virgülle ayırıp eklenebilir)
+  const envAllowed = process.env.ALLOWED_ORIGIN ? process.env.ALLOWED_ORIGIN.split(",") : [];
+  const allowedOrigins = [
+    "https://altin-portfolio-website-gold-portfo.vercel.app", // Sizin Vercel siteniz
+    "http://localhost:5173", // Lokal geliştirme
+    ...envAllowed
+  ];
+
+  // Eğer gelen istek bizim izin verdiğimiz listedeyse, izin ver; değilse engelle
+  if (origin && allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  } else if (!origin) {
+    // Mobil uygulama, Postman veya sunucu içi haberleşme (origin başlığı olmaz)
+    res.setHeader("Access-Control-Allow-Origin", "*");
+  }
+
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  
+  // Preflight (Ön yükleme) isteğini yanıtla
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
+  next();
+});
+
 app.use(
   pinoHttp({
     logger,
@@ -26,15 +57,7 @@ app.use(
     },
   }),
 );
-const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || "*";
 
-app.use(
-  cors({
-    origin: ALLOWED_ORIGIN === "*" ? true : ALLOWED_ORIGIN.split(","),
-    credentials: true,
-    optionsSuccessStatus: 204
-  })
-);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
