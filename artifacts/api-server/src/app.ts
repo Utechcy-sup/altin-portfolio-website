@@ -33,7 +33,8 @@ app.use((req, res, next) => {
   
   // Preflight (Ön yükleme) isteğini yanıtla
   if (req.method === "OPTIONS") {
-    return res.sendStatus(204);
+    res.sendStatus(204);
+    return;
   }
   next();
 });
