@@ -30,8 +30,23 @@ const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || "*";
 
 app.use(
   cors({
-    origin: ALLOWED_ORIGIN === "*" ? "*" : ALLOWED_ORIGIN.split(","),
+    origin: (origin, callback) => {
+      // origin boşsa (örneğin mobil uygulamalar veya aynı sunucudan istek) veya ALLOWED_ORIGIN "*" ise izin ver
+      if (!origin || ALLOWED_ORIGIN === "*") {
+        callback(null, true);
+        return;
+      }
+      
+      const allowedOrigins = ALLOWED_ORIGIN.split(",");
+      if (allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error("CORS: Bu adresten gelen isteğe izin verilmiyor."));
+      }
+    },
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
   })
 );
 app.use(express.json());
