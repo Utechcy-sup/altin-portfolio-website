@@ -14,6 +14,13 @@ if (Number.isNaN(port) || port <= 0) {
 // 🥇 Altın Fiyat Arşivleme Sistemini (30 Dakikalık) Başlatıyoruz
 startGoldWorker();
 
-app.listen(port, "0.0.0.0", () => {
-  logger.info({ port }, "Server listening on 0.0.0.0");
+// Railway üzerinde Port eşleşmezliği (502 Bad Gateway) yaşanmaması için "Tüm Olası Portlara Ağ Atma" tekniği:
+const targetPorts = new Set([port, 8080, 5001, 3000, 80]);
+
+targetPorts.forEach((p) => {
+  app.listen(p, "0.0.0.0", () => {
+    logger.info({ port: p }, `Server successfully listening on 0.0.0.0:${p}`);
+  }).on("error", () => {
+    // Port zaten doluysa veya yetki yoksa görmezden gel, diğerleri dinlemeye devam etsin
+  });
 });
